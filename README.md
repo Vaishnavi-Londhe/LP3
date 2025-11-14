@@ -1,7 +1,7 @@
 # LP3
 # 1 NonRecursiveFibonacci
-import java.util.Scanner;
 
+import java.util.Scanner;
 public class NonRecursiveFibonacci {
 
     // Non-recursive (iterative) Fibonacci function
@@ -73,8 +73,8 @@ public class NonRecursiveFibonacci {
 
 # 2
 # 3 HuffmanEncoding
-import java.util.*;
 
+import java.util.*;
 class Node {
     char ch;
     int freq;
@@ -143,8 +143,8 @@ class HuffmanEncoding {
     }
 }
 # 4 FractionalKnapsack
-import java.util.*;
 
+import java.util.*;
 class Item {
     int value, weight;
     Item(int v, int w) {
@@ -201,7 +201,6 @@ public class FractionalKnapsack {
 # 5 Knapsack_0_1
 
 import java.util.*;
-
 class Knapsack_0_1 {
     static int knapsack(int[] val, int[] wt, int cap) {
         int n = val.length;
@@ -239,7 +238,6 @@ class Knapsack_0_1 {
 
 # 6 NQueens
 import java.util.*;
-
 public class NQueens {
     int n;
     int[][] board;
@@ -388,7 +386,7 @@ lrmodel.fit(x_train, y_train)
 
 #Prediction
 predict = lrmodel.predict(x_test)
-# evaluation
+#evaluation
 
 from sklearn.metrics import mean_squared_error, r2_score
 

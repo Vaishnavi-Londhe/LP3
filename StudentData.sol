@@ -1,50 +1,42 @@
-//SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract StudentData
-{
-    // Structure
-    struct Student
-    {
-        int ID;
-        string fName;
-        string lName;
-        int[2] marks;     // array of 2 marks
+contract StudentData {
+
+    // ---- STRUCT ----
+    struct Student {
+        uint id;
+        string name;
+        uint age;
     }
 
-    address owner;
-    int public stdCount = 0;
+    // ---- ARRAY OF STRUCTS ----
+    Student[] public students;
 
-    mapping(int => Student) public stdRecords;
+    // ---- ADD STUDENT ----
+    function addStudent(uint _id, string memory _name, uint _age) public {
+        students.push(Student(_id, _name, _age));
+    }
 
-    // Fallback function (required)
+    // ---- GET STUDENT BY INDEX ----
+    function getStudent(uint index) public view returns(uint, string memory, uint) {
+        require(index < students.length, "Index out of range");
+        Student memory s = students[index];
+        return (s.id, s.name, s.age);
+    }
+
+    // ---- NUMBER OF STUDENTS ----
+    function totalStudents() public view returns(uint) {
+        return students.length;
+    }
+
+    // ---- FALLBACK FUNCTION ----
+    // Triggered when calling a non-existing function
     fallback() external payable {
-        // contract can receive ETH
+        // Ether sent here will be logged but not used
     }
 
-    // Receive function (optional but good)
+    // ---- RECEIVE FUNCTION ----
+    // Triggered when contract receives plain ETH
     receive() external payable {}
-
-    modifier onlyOwner {
-        require(owner == msg.sender, "Only owner can add");
-        _;
-    }
-
-    constructor() {
-        owner = msg.sender;
-    }
-
-    // Add new student record
-    function addNewRecords(
-        int _ID,
-        string memory _fName,
-        string memory _lName,
-        int[2] memory _marks
-    ) 
-        public 
-        onlyOwner 
-    {
-        stdCount = stdCount + 1;
-        stdRecords[stdCount] = Student(_ID, _fName, _lName, _marks);
-    }
 }
